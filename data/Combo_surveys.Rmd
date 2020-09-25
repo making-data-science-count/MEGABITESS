@@ -1,0 +1,239 @@
+---
+title: "02-identify-valid-responses"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+# Loading and setting up
+
+```{r}
+library(tidyverse)
+library(here)
+library(dplyr)
+library(plyr)
+library(ggplot2)
+```
+
+# Reading data
+
+```{r}
+eoc1 <- read_csv(here::here("data", "eoc-1.csv"))
+eoc2 <- read_csv(here::here("data", "eoc-2.csv"))
+eoc3 <- read_csv(here::here("data", "eoc-3.csv"))
+eoc4 <- read_csv(here::here("data", "eoc-4.csv"))
+eoc5 <- read_csv(here::here("data", "eoc-5.csv"))
+pre <- read.csv(here::here("data", "pre-survey.csv"))
+post <- read.csv(here::here("data", "post-survey.csv"))
+combo <- read_csv(here::here("data", "eoc-combo.csv"))
+  
+```
+
+# Filtering responses
+```{r}
+combo_mod <- combo %>%
+  arrange(combo_mod,"RecipientEmail")
+```
+
+
+```{r}
+eoc1_marked <- eoc1 %>% 
+
+  mutate(Survey = Finished =="True")%>%
+  mutate(Survey = if_else(Survey == "TRUE", "eoc1", "eoc1not"))        
+
+
+write_csv(eoc1_marked, here::here("data", "EOC1_marked.csv"))
+```
+
+```{r}
+eoc2_marked <- eoc2 %>% 
+
+  mutate(Survey = Finished =="True")%>%
+  mutate(Survey = if_else(Survey == "TRUE", "eoc2", "eoc2not"))        
+
+
+write_csv(eoc2_marked, here::here("data", "EOC2_marked.csv"))
+```
+
+```{r}
+eoc3_marked <- eoc3 %>% 
+
+  mutate(Survey = Finished =="True")%>%
+  mutate(Survey = if_else(Survey == "TRUE", "eoc3", "eoc3not"))        
+
+
+write_csv(eoc3_marked, here::here("data", "EOC3_marked.csv"))
+```
+
+```{r}
+eoc4_marked <- eoc4 %>% 
+
+  mutate(Survey = Finished =="True")%>%
+  mutate(Survey = if_else(Survey == "TRUE", "eoc4", "eoc4not"))        
+
+
+write_csv(eoc4_marked, here::here("data", "EOC4_marked.csv"))
+```
+
+```{r}
+eoc5_marked <- eoc5 %>% 
+
+  mutate(Survey = Finished =="True")%>%
+  mutate(Survey = if_else(Survey == "TRUE", "eoc5", "eoc5not"))        
+
+
+write_csv(eoc5_marked, here::here("data", "EOC5_marked.csv"))
+```
+
+```{r}
+pre_marked <- pre %>% 
+
+  mutate(Survey = Finished =="True")%>%
+  mutate(Survey = if_else(Survey == "TRUE", "pre", "prenot"))        
+
+
+write_csv(pre_marked, here::here("data", "pre_marked.csv"))
+```
+
+
+##Combine the files 
+```{r}
+eoc12 <- 
+  merge(eoc1_marked, eoc2_marked, by = 'Survey', all = TRUE)%>%
+  arrange(Survey)
+```
+
+```{r}
+eoc34 <- 
+  merge(eoc3_marked, eoc4_marked, by = 'Survey', all = TRUE)%>%
+  arrange(Survey)
+```
+
+
+```{r}
+original <-  read_csv(here::here("data", "original-utk-anon-flag.csv"))%>%
+  arrange(ID)
+
+supplement <-  read_csv(here::here("data", "supplement-utk-anon-flag.csv"))%>%
+  arrange(ID)
+
+mtsu <- read_csv(here::here("data", "combined-mtsu-um-anon-flag.csv"))%>%
+  arrange(ID)
+
+```
+  ### Dropping admin data from original file
+  **borrowed HA code**
+```{r}
+original_dropAD <- original %>% 
+  filter(original$ROLE == 'Teacher (please select this role if you a classroom teacher, STEM/STEAM lab teacher, librarian/media specialist, or are in another instructional role)') %>%
+  select(-(Q10:A_OTHER))
+```
+
+
+#QUAL data merged files
+```{r}
+d2_d3 <- 
+  merge(d2_qual, d3_qual, by = 'ID', all = TRUE)%>%
+  arrange(ID)
+
+```
+```{r}
+new_surveys <-
+  merge(d2_d3, d1_qual, by = "ID", all =  TRUE)%>%
+  arrange(ID)
+```
+```{r}
+familiar<- new_surveys %>%
+select("FAMILIAR")%>%
+<<<<<<< HEAD
+=======
+count()
+
+>>>>>>> cffafe1edde2131f314f68cbf836553c58772f2d
+count()
+
+```
+```{r}
+interest<- new_surveys %>%
+select( "T_INTEREST_QUAL")%>%
+<<<<<<< HEAD
+=======
+
+select("ID", "T_INTEREST_QUAL")%>%
+arrange ("FAMILIAR")%>%
+
+>>>>>>> cffafe1edde2131f314f68cbf836553c58772f2d
+count()
+```
+```{r}
+needs<- new_surveys%>%
+  select("T_NEEDS_QUAL.x" )%>%
+  count()
+```
+```{r}
+barriers<- new_surveys%>%
+  select("T_BARRIERS_QUAL.x")%>%
+  count()
+``` 
+```{r}
+resources<- new_surveys %>%
+  select("T_RESOURCES_QUAL")%>%
+  count()
+```
+
+
+
+
+
+
+  
+# Merging the surveys
+```{r}
+UTK_combo <- 
+  merge(d1_processed, d2_processed, by = 'ID', all = TRUE) %>% 
+  arrange(ID)
+
+
+  
+```
+```{r}
+processed_surveys <-
+  merge(d3_processed, UTK_combo, by = 'ID', all = TRUE)%>%
+  arrange(ID)
+  
+ 
+```
+#Counting how familiar teachers are with 
+```{r}
+CS_AWARE <- processed_surveys %>%
+  select("FAMILIAR", "T_SCHOOL_TYPE.x")%>%
+  count()
+  
+```
+
+## d1
+
+```{r}
+processed_surveys %>% 
+  select(progress_flag)%>%
+  count()
+```
+```{r}
+d1_processed %>% 
+  select(duration_flag)%>%
+  count()
+```
+
+## d2
+
+```{r}
+d2_processed %>% 
+  select("progress_flag")%>%
+  count()
+```
+
+
+
