@@ -1,5 +1,5 @@
 ---
-title: "02-identify-valid-responses"
+title: "combining exit tickets"
 output: html_document
 ---
 
@@ -32,10 +32,6 @@ combo <- read_csv(here::here("data", "eoc-combo.csv"))
 ```
 
 # Filtering responses
-```{r}
-combo_mod <- combo %>%
-  arrange(combo_mod,"RecipientEmail")
-```
 
 
 ```{r}
