@@ -145,24 +145,22 @@ new_surveys <-
 ```{r}
 familiar<- new_surveys %>%
 select("FAMILIAR")%>%
-<<<<<<< HEAD
-=======
+
 count()
 
->>>>>>> cffafe1edde2131f314f68cbf836553c58772f2d
+
 count()
 
 ```
 ```{r}
 interest<- new_surveys %>%
 select( "T_INTEREST_QUAL")%>%
-<<<<<<< HEAD
-=======
+
 
 select("ID", "T_INTEREST_QUAL")%>%
 arrange ("FAMILIAR")%>%
 
->>>>>>> cffafe1edde2131f314f68cbf836553c58772f2d
+
 count()
 ```
 ```{r}
