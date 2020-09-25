@@ -1,5 +1,5 @@
 ---
-title: "02-identify-valid-responses"
+title: "combining exit tickets"
 output: html_document
 ---
 
