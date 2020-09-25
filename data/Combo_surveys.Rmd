@@ -99,6 +99,7 @@ write_csv(pre_marked, here::here("data", "pre_marked.csv"))
 ```{r}
 eoc12 <- 
   merge(eoc1_marked, eoc2_marked, by = 'Survey', all = TRUE)%>%
+  bind_rows()
   arrange(Survey)
 ```
 
