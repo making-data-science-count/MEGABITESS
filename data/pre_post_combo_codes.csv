@@ -1,0 +1,47 @@
+﻿Status,Response Type
+IPAddress,IP Address
+Progress,Progress
+Duration (in seconds),Duration (in seconds)
+Finished,Finished
+RecordedDate,Recorded Date
+ResponseId,Response ID
+RecipientLastName,Recipient Last Name
+RecipientFirstName,Recipient First Name
+RecipientEmail,Recipient Email
+ExternalReference,External Data Reference
+LocationLatitude,Location Latitude
+LocationLongitude,Location Longitude
+DistributionChannel,Distribution Channel
+UserLanguage,User Language
+Q17_1,Please indicate how much you know at this time about the following activities and topics related to MEGA:BITESS. - Setting up a surveillance program with students
+Q17_2,Please indicate how much you know at this time about the following activities and topics related to MEGA:BITESS. - Knowing about veterinary entomology
+Q17_3,Please indicate how much you know at this time about the following activities and topics related to MEGA:BITESS. - The lifecycle of a mosquito
+Q17_4,Please indicate how much you know at this time about the following activities and topics related to MEGA:BITESS. - The habitat of a mosquito
+Q17_5,Please indicate how much you know at this time about the following activities and topics related to MEGA:BITESS. - Planning and carrying out a scientific investigation with students
+Q17_6,Please indicate how much you know at this time about the following activities and topics related to MEGA:BITESS. - Writing a geo-inquiry question
+Q17_7,Please indicate how much you know at this time about the following activities and topics related to MEGA:BITESS. - Collecting mosquito data in the field with students
+Q17_8,Please indicate how much you know at this time about the following activities and topics related to MEGA:BITESS. - Collecting GIS data in the field with students
+Q15,"Please enter your personal code in the text box below.
+
+ 
+
+Your personal code is a unique, anonymous identifier that we will ask you to use in your survey responses and other data sources for us to be able to link your data, while protecting your confidentiality and privacy. 
+
+ 
+
+So that it is easy for you to remember, please consider your first pet's name and the day of the month on which you were born as your personal code. For example, if your first pet was named Freddie, and you were born on the 4th day of the month, your personal code would be: 
+
+ 
+
+freddie4"
+Q22,"By the end of the current school year, for how many years have you worked in education?"
+Q23,At what grade level(s) do you teach? - Selected Choice
+Q23_16_TEXT,At what grade level(s) do you teach? - Other (please describe) - Text
+Q24,What is the highest level of schooling you have completed or the highest degree you have received? - Selected Choice
+Q24_5_TEXT,What is the highest level of schooling you have completed or the highest degree you have received? - Other (please describe) - Text
+Q19,What is your gender? - Selected Choice
+Q19_4_TEXT,What is your gender? - Other (please describe) - Text
+Q20,Do you identify as a member of an underrepresented racial or ethnic group?
+Q21,Which which underrepresented group(s) do you identify?
+Q12,What other information about the forthcoming MEGA:BITESS Summer Academy-if anything-would you like to share with us?
+Survey,
