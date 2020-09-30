@@ -33,7 +33,8 @@ combo <- read_csv(here::here("data", "eoc_combo.csv"))
 # Filtering responses
 
 ```{r}
-combo %>% 
-  select("")%>%
-  count()
+selected <- combo %>% 
+  select("StartDate","EndDate","Progress","RecipientEmail", "ResponseId", "Survey", "Q1_1", "Q1_2", "Q1_3", "Q1_4", "Q2", "Survey")%>%
+  arrange(StartDate,)%>%
+write_csv("data", "combo_organize.csv")
 ```
