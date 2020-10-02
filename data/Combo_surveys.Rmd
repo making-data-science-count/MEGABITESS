@@ -15,6 +15,7 @@ library(here)
 library(dplyr)
 library(plyr)
 library(ggplot2)
+library(janitor)
 ```
 
 # Reading data
@@ -28,6 +29,7 @@ library(ggplot2)
 #post <- read.csv(here::here("data", "post-survey.csv"))
 combo <- read_csv(here::here("data", "eoc_combo.csv"))
 comment <- read_csv(here::here("data", "combo_organize.csv"))
+ordered <- read_csv(here::here("data", "Survey_date.csv"))
   
 ```
 
@@ -69,3 +71,53 @@ Q2_comments <- comment %>%
   select("Survey","Q2_code")%>%
   count()
 ```
+```{r}
+dates <- comment %>%
+  select("Survey", "EndDate")%>%
+  count()
+  
+  
+```
+
+##Breakdown Question by time points
+
+
+```{r}
+time_Q1_1 <- comment %>%
+  janitor::tabyl(EndDate, Q1_1)
+```
+
+```{r}
+time_Q1_2 <- comment %>%
+  janitor::tabyl(EndDate, Q1_2)
+```
+
+```{r}
+time_Q1_3 <- comment %>%
+  janitor::tabyl(EndDate, Q1_3)
+```
+
+```{r}
+time_Q1_4 <- comment %>%
+  janitor::tabyl(EndDate, Q1_4)
+```
+
+
+```{r}
+time_Q2 <- comment %>%
+  janitor::tabyl(EndDate, Q2_code)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
