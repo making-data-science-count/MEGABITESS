@@ -1,6 +1,6 @@
 ---
 title: "combining exit tickets"
-output: html_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
@@ -107,17 +107,3 @@ time_Q1_4 <- comment %>%
 time_Q2 <- comment %>%
   janitor::tabyl(EndDate, Q2_code)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
