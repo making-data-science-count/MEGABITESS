@@ -12,7 +12,6 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```{r}
 library(tidyverse)
 library(here)
-library(dplyr)
 library(plyr)
 library(ggplot2)
 library(janitor)
@@ -48,32 +47,32 @@ Q1_1 <- comment %>%
 ```
 ```{r}
 Q1_2 <- comment %>%
-  select("Survey","Q1_2")%>%
+  select(Survey,Q1_2)%>%
   count()
 ```
 ```{r}
 Q1_3 <- comment %>%
-  select("Survey","Q1_3")%>%
+  select(Survey,Q1_3)%>%
   count()
 ```
 ```{r}
 Q1_4 <- comment %>%
-  select("Survey","Q1_4")%>%
+  select(Survey,Q1_4)%>%
   count()
 ```
 ```{r}
 Q2 <- comment %>%
-  select("Survey","Q2")%>%
+  select(Survey,Q2)%>%
   count()
 ```
 ```{r}
 Q2_comments <- comment %>%
-  select("Survey","Q2_code")%>%
+  select(Survey, Q2_code)%>%
   count()
 ```
 ```{r}
 dates <- comment %>%
-  select("Survey", "EndDate")%>%
+  select(Survey, EndDate)%>%
   count()
   
   
