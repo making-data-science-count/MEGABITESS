@@ -1,6 +1,6 @@
 ---
-title: "combining exit tickets"
-output: pdf_document
+title: "combining and describing exit ticket surveys"
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
