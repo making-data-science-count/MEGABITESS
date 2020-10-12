@@ -53,32 +53,32 @@ write_csv("combo_organize.csv")
 ### The questions for the surveys were organized by the question and the survey they corresponded with. 
 #### For example, Q1_1 file will have all of the Q1_1 questions for all of they EOC 1-5 surveys. 
 ```{r}
-Q1_1 <- comment %>%
+comment %>%
   select(Survey,Q1_1)%>%
   count()
 ```
 ```{r}
-Q1_2 <- comment %>%
+comment %>%
   select(Survey,Q1_2)%>%
   count()
 ```
 ```{r}
-Q1_3 <- comment %>%
+comment %>%
   select(Survey,Q1_3)%>%
   count()
 ```
 ```{r}
-Q1_4 <- comment %>%
+comment %>%
   select(Survey,Q1_4)%>%
   count()
 ```
 ```{r}
-Q2 <- comment %>%
-  select(Survey,Q2)%>%
+comment %>%
+  select(Survey, Q2)%>%
   count()
 ```
 ```{r}
-Q2_comments <- comment %>%
+comment %>%
   select(Survey, Q2_code)%>%
   count()
 ```
