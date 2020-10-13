@@ -42,7 +42,7 @@ ordered <- read_csv(here::here("data", "Survey_date.csv"))
 ### Q1_1 , Q1_2, Q1_3, Q1_4, Q2 = the questions that were asked on each of the surveys given to the participants. 
 ```{r}
 selected <- combo %>% 
-  select("StartDate","EndDate","Progress","RecipientEmail", "ResponseId", "Survey", "Q1_1", "Q1_2", "Q1_3", "Q1_4", "Q2")%>%
+  select(StartDate,EndDate,Progress,RecipientEmail, ResponseId, Survey, Q1_1, Q1_2, Q1_3, Q1_4, Q2)%>%
   arrange(StartDate)%>%
 write_csv("combo_organize.csv")
 ```
