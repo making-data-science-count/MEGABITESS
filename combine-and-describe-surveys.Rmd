@@ -84,7 +84,7 @@ comment %>%
 ## Some of the participants used the same link on multiple days that could alter the analysis of the data. This code will divide when each of the survey responses were sent (the EndDate) to researchers. 
 
 ```{r}
-dates <- comment %>%
+comment %>%
   select(Survey, EndDate)%>%
   count()
   
