@@ -1,5 +1,6 @@
 ---
-title: "combining and describing exit ticket surveys"
+title: "Combining and Describing Exit Ticket Surveys"
+Author: "Michael Mann"
 output:
   pdf_document: default
   html_document: default
