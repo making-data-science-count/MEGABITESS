@@ -11,7 +11,7 @@
 
 
 
-<title>combining exit tickets</title>
+<title>combining and describing exit ticket surveys</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -374,7 +374,7 @@ summary {
 
 
 
-<h1 class="title toc-ignore">combining exit tickets</h1>
+<h1 class="title toc-ignore">combining and describing exit ticket surveys</h1>
 
 </div>
 
@@ -383,9 +383,6 @@ summary {
 <h1>Loading and setting up</h1>
 <pre class="r"><code>library(tidyverse)
 library(here)
-library(dplyr)
-library(plyr)
-library(ggplot2)
 library(janitor)</code></pre>
 </div>
 <div id="reading-data" class="section level1">
@@ -397,45 +394,164 @@ library(janitor)</code></pre>
 #pre &lt;- read.csv(here::here(&quot;data&quot;, &quot;pre-survey.csv&quot;))
 #post &lt;- read.csv(here::here(&quot;data&quot;, &quot;post-survey.csv&quot;))
 combo &lt;- read_csv(here::here(&quot;data&quot;, &quot;eoc_combo.csv&quot;))
-comment &lt;- read_csv(here::here(&quot;data&quot;, &quot;combo_organize.csv&quot;))
+comment &lt;- read_csv(here::here(&quot;data&quot;, &quot;combo_organize_notes.csv&quot;))
 ordered &lt;- read_csv(here::here(&quot;data&quot;, &quot;Survey_date.csv&quot;))</code></pre>
 <pre><code>## Warning: Missing column names filled in: &#39;X4&#39; [4]</code></pre>
 </div>
 <div id="filtering-responses" class="section level1">
 <h1>Filtering responses</h1>
-<p>#<code>{r} selected &lt;- combo %&gt;%    select(&quot;StartDate&quot;,&quot;EndDate&quot;,&quot;Progress&quot;,&quot;RecipientEmail&quot;, &quot;ResponseId&quot;, &quot;Survey&quot;, &quot;Q1_1&quot;, &quot;Q1_2&quot;, &quot;Q1_3&quot;, &quot;Q1_4&quot;, &quot;Q2&quot;)%&gt;%   arrange(StartDate)%&gt;% write_csv(&quot;combo_organize.csv&quot;) #</code></p>
-<pre class="r"><code>Q1_1 &lt;- comment %&gt;%
-  select(&quot;Survey&quot;,&quot;Q1_1&quot;)%&gt;%
+<div id="the-following-code-is-to-focus-the-number-of-columns-that-we-need-to-use-when-we-are-analyzing-the-data." class="section level2">
+<h2>The following code is to focus the number of columns that we need to use when we are analyzing the data.</h2>
+<div id="start-date-when-the-individual-started-the-intial-survey." class="section level3">
+<h3>- Start date = when the individual started the intial survey.</h3>
+</div>
+<div id="enddate-when-the-individual-finished-the-survey." class="section level3">
+<h3>- EndDate = when the individual finished the survey.</h3>
+</div>
+<div id="progress-how-much-of-the-survey-was-completed." class="section level3">
+<h3>- Progress = how much of the survey was completed.</h3>
+<div id="most-individuals-completed-the-surveys-to-the-100-percent-level" class="section level4">
+<h4>Most individuals completed the surveys to the 100 percent level</h4>
+</div>
+</div>
+<div id="recipientemail-the-individuals-email" class="section level3">
+<h3>- RecipientEmail = the individuals email</h3>
+</div>
+<div id="responseid-the-id-that-was-creatd-by-the-system" class="section level3">
+<h3>- ResponseID = the ID that was creatd by the system</h3>
+</div>
+<div id="survey-which-of-the-5-surveys-the-response-was-associated." class="section level3">
+<h3>- Survey = which of the 5 surveys the response was associated.</h3>
+</div>
+<div id="q1_1-q1_2-q1_3-q1_4-q2-the-questions-that-were-asked-on-each-of-the-surveys-given-to-the-participants." class="section level3">
+<h3>Q1_1 , Q1_2, Q1_3, Q1_4, Q2 = the questions that were asked on each of the surveys given to the participants.</h3>
+<pre class="r"><code>selected &lt;- combo %&gt;% 
+  select(StartDate,EndDate,Progress,RecipientEmail, ResponseId, Survey, Q1_1, Q1_2, Q1_3, Q1_4, Q2)%&gt;%
+  arrange(StartDate)%&gt;%
+write_csv(&quot;combo_organize.csv&quot;)</code></pre>
+</div>
+</div>
+<div id="the-following-code" class="section level2">
+<h2>The following code</h2>
+<div id="the-questions-for-the-surveys-were-organized-by-the-question-and-the-survey-they-corresponded-with." class="section level3">
+<h3>The questions for the surveys were organized by the question and the survey they corresponded with.</h3>
+<div id="for-example-q1_1-file-will-have-all-of-the-q1_1-questions-for-all-of-they-eoc-1-5-surveys." class="section level4">
+<h4>For example, Q1_1 file will have all of the Q1_1 questions for all of they EOC 1-5 surveys.</h4>
+<pre class="r"><code>comment %&gt;%
+  select(Survey,Q1_1)%&gt;%
   count()</code></pre>
-<pre class="r"><code>Q1_2 &lt;- comment %&gt;%
-  select(&quot;Survey&quot;,&quot;Q1_2&quot;)%&gt;%
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1    63</code></pre>
+<pre class="r"><code>comment %&gt;%
+  select(Survey,Q1_2)%&gt;%
   count()</code></pre>
-<pre class="r"><code>Q1_3 &lt;- comment %&gt;%
-  select(&quot;Survey&quot;,&quot;Q1_3&quot;)%&gt;%
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1    63</code></pre>
+<pre class="r"><code>comment %&gt;%
+  select(Survey,Q1_3)%&gt;%
   count()</code></pre>
-<pre class="r"><code>Q1_4 &lt;- comment %&gt;%
-  select(&quot;Survey&quot;,&quot;Q1_4&quot;)%&gt;%
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1    63</code></pre>
+<pre class="r"><code>comment %&gt;%
+  select(Survey,Q1_4)%&gt;%
   count()</code></pre>
-<pre class="r"><code>Q2 &lt;- comment %&gt;%
-  select(&quot;Survey&quot;,&quot;Q2&quot;)%&gt;%
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1    63</code></pre>
+<pre class="r"><code>comment %&gt;%
+  select(Survey, Q2)%&gt;%
   count()</code></pre>
-<pre class="r"><code>Q2_comments &lt;- comment %&gt;%
-  select(&quot;Survey&quot;,&quot;Q2_code&quot;)%&gt;%
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1    63</code></pre>
+<pre class="r"><code>comment %&gt;%
+  select(Survey, Q2_code)%&gt;%
   count()</code></pre>
-<pre class="r"><code>dates &lt;- comment %&gt;%
-  select(&quot;Survey&quot;, &quot;EndDate&quot;)%&gt;%
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1    63</code></pre>
+</div>
+</div>
+</div>
+<div id="some-of-the-participants-used-the-same-link-on-multiple-days-that-could-alter-the-analysis-of-the-data.-this-code-will-divide-when-each-of-the-survey-responses-were-sent-the-enddate-to-researchers." class="section level2">
+<h2>Some of the participants used the same link on multiple days that could alter the analysis of the data. This code will divide when each of the survey responses were sent (the EndDate) to researchers.</h2>
+<pre class="r"><code>comment %&gt;%
+  select(Survey, EndDate)%&gt;%
   count()</code></pre>
-<p>##Breakdown Question by time points</p>
-<pre class="r"><code>time_Q1_1 &lt;- comment %&gt;%
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1    63</code></pre>
+<p>##Breakdown Question by time points ### Theses coded are further investigation of when each of the questions were sent. This will assist in the separation by date to ensure responses are truly chronological when they participated in the events of the study.</p>
+<pre class="r"><code>comment %&gt;%
   janitor::tabyl(EndDate, Q1_1)</code></pre>
-<pre class="r"><code>time_Q1_2 &lt;- comment %&gt;%
+<pre><code>##    EndDate Almost always Occasionally To a considerable degree NA_
+##  6/22/2020             4            0                        7   2
+##  6/23/2020             9            1                        6   1
+##  6/24/2020             6            0                        4   0
+##  6/25/2020            10            2                        3   0
+##  6/26/2020             5            1                        1   0
+##   7/1/2020             1            0                        0   0</code></pre>
+<pre class="r"><code>comment %&gt;%
   janitor::tabyl(EndDate, Q1_2)</code></pre>
-<pre class="r"><code>time_Q1_3 &lt;- comment %&gt;%
+<pre><code>##    EndDate Almost always Occasionally Seldom To a considerable degree NA_
+##  6/22/2020             0            4      7                        0   2
+##  6/23/2020             0            3     12                        1   1
+##  6/24/2020             0            2      8                        0   0
+##  6/25/2020             1            3      8                        3   0
+##  6/26/2020             0            2      4                        1   0
+##   7/1/2020             0            0      1                        0   0</code></pre>
+<pre class="r"><code>comment %&gt;%
   janitor::tabyl(EndDate, Q1_3)</code></pre>
-<pre class="r"><code>time_Q1_4 &lt;- comment %&gt;%
+<pre><code>##    EndDate Almost always Occasionally Seldom To a considerable degree NA_
+##  6/22/2020             4            0      0                        7   2
+##  6/23/2020             8            2      0                        6   1
+##  6/24/2020             6            0      0                        4   0
+##  6/25/2020             7            3      1                        4   0
+##  6/26/2020             4            0      0                        3   0
+##   7/1/2020             1            0      0                        0   0</code></pre>
+<pre class="r"><code>comment %&gt;%
   janitor::tabyl(EndDate, Q1_4)</code></pre>
-<pre class="r"><code>time_Q2 &lt;- comment %&gt;%
+<pre><code>##    EndDate Almost always Occasionally Seldom To a considerable degree NA_
+##  6/22/2020             4            1      1                        5   2
+##  6/23/2020             5            3      0                        8   1
+##  6/24/2020             6            0      0                        4   0
+##  6/25/2020             8            5      0                        2   0
+##  6/26/2020             5            1      0                        1   0
+##   7/1/2020             1            0      0                        0   0</code></pre>
+<pre class="r"><code>comment %&gt;%
   janitor::tabyl(EndDate, Q2_code)</code></pre>
+<pre><code>##    EndDate Alteration Alterations Approval Clarification Enjoyed Excited Focus
+##  6/22/2020          0           0        0             3       2       1     1
+##  6/23/2020          2           1        1             1       4       0     0
+##  6/24/2020          0           0        4             0       3       0     0
+##  6/25/2020          1           0        0             0       8       0     0
+##  6/26/2020          0           0        0             0       1       0     0
+##   7/1/2020          0           0        0             0       0       0     0
+##  Format Informative Na None Speaker too long Understanding want team-up
+##       0           0  0    2       1        0             0            0
+##       0           1  0    1       0        0             0            0
+##       0           0  0    1       0        0             0            0
+##       0           0  1    0       0        1             1            0
+##       1           0  0    0       0        0             0            1
+##       0           0  0    0       0        0             0            0
+##  went well NA_
+##          0   3
+##          0   6
+##          0   2
+##          0   3
+##          1   3
+##          0   1</code></pre>
+</div>
 </div>
 
 

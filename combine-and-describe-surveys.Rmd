@@ -1,6 +1,8 @@
 ---
 title: "combining and describing exit ticket surveys"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -46,36 +48,35 @@ selected <- combo %>%
   arrange(StartDate)%>%
 write_csv("combo_organize.csv")
 ```
+##The following code separates individual questions from all other questions in the surveys. Then each separated question is designated by the survey it was pulled from (EOC 1-5). 
 
-## The following code 
-### The questions for the surveys were organized by the question and the survey they corresponded with. 
-#### For example, Q1_1 file will have all of the Q1_1 questions for all of they EOC 1-5 surveys. 
+
 ```{r}
 comment %>%
   select(Survey,Q1_1)%>%
   count()
-```
-```{r}
+
+
 comment %>%
   select(Survey,Q1_2)%>%
   count()
-```
-```{r}
+
+
 comment %>%
   select(Survey,Q1_3)%>%
   count()
-```
-```{r}
+
+
 comment %>%
   select(Survey,Q1_4)%>%
   count()
-```
-```{r}
+
+
 comment %>%
   select(Survey, Q2)%>%
   count()
-```
-```{r}
+
+
 comment %>%
   select(Survey, Q2_code)%>%
   count()
