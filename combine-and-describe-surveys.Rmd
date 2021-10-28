@@ -137,9 +137,9 @@ comment %>%
 
 
 ```{r}
-pre_post %>%
+pre_post_q17 <- pre_post %>%
 select(Q15, Survey, Q17_1, Q17_2,	Q17_3, Q17_4,	Q17_5,	Q17_6,	Q17_7,	Q17_8)%>% 
-  arrange(Q15)%>%
-  write_csv("pre_post_combo_bysurvey.csv")
+  arrange(Q15)
+ 
 ```
 
